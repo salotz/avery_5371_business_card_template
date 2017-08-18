@@ -1,0 +1,10 @@
+*Note: I do not recommend printing on perforated sheets.*
+It is a pain to line it up correctly, and if you have access to a paper cutter your life will be much easier.
+
+* Template for business cards on Avery 5371 Business Cards stock
+
+This uses the ~ticket~ LaTeX package and the ticket definition file in this package.
+
+You may have to adjust things based on your printer, but this is probably a good starting point.
+
+Just make sure to turn off all re-centering and things in the print settings.

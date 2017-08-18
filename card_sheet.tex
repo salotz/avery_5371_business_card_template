@@ -1,0 +1,88 @@
+%%%%
+%
+% ticket.sty example file for visiting cards
+%
+%%%%
+% use the corresponding paper size for your ticket definition
+\documentclass[letter,10pt]{letter}
+
+% load ticket.sty with the appropriate ticket definition
+\usepackage[avery_5371]{ticket}
+
+% load misc stuff
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{pstricks}
+\usepackage{pst-barcode}
+
+% MSU Green
+\definecolor{uni}{HTML}{204037}
+
+\newcommand{\ORCIDQRcode}{
+  \begin{pspicture}(25mm,25mm)
+    \psbarcode{https://orcid.org/0000-0001-6159-615X}{eclevel=L width=1 height=1}{qrcode}
+  \end{pspicture}
+}
+
+
+% make your default ticket. \ticketdefault is somewhat like a background
+% here it is empty, because we use different tickets for the front an
+% the back of our card
+\renewcommand{\ticketdefault}{%
+}
+
+% now what do you like to put in your ticket
+\newcommand{\vcardfront}{\ticket{%
+    % Logo on right hand side
+    \put( 60, 30){\includegraphics[width=20mm,origin=bl]{MSU_seal}}
+
+    % Header Name
+    \put(6,40){\bfseries\LARGE Samuel D. Lotz}
+    % title
+    \put(7,36){PhD Candidate}
+    % Organization
+    \put(7, 32){Michigan State University}
+    
+    % email
+    \put( 7, 24){\small contact: samuel.lotz@salotz.info}
+    % research ID
+    \put( 7,16){\small research: orcid.org/0000-0001-6159-615X}    
+    % software
+    \put( 7, 20){\small software: github.com/salotz}
+
+    % line
+    \put( 5, 13){\line(1,0){60}}
+    % specializations
+    \put( 7, 10){\small Pharmacological Biophysics}
+    \put( 7,6.5){\small Data Science}
+    \put( 7,  3){\small Software Engineering}
+    % 
+
+
+ }}
+
+\newcommand{\vcardback}{\ticket{%
+
+  }}
+
+% a counter, which makes life easier...
+\newcounter{numcards}
+
+\begin{document}
+
+
+\sffamily
+
+% ten cards for the front
+\whiledo{\thenumcards<10}{%
+  \stepcounter{numcards}%
+  \vcardfront
+}
+\setcounter{numcards}{0}
+
+% and ten for the backside
+\whiledo{\thenumcards<10}{%
+  \stepcounter{numcards}%
+  \vcardback
+}
+\end{document}
